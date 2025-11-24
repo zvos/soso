@@ -1,7 +1,8 @@
 cloudflare请求量监控
 变量名为 EDGE 类型为密钥
 [
-    {
+
+   {
         "name": "账号1",
         "email": "5655@icloud.com",
         "key": "5668666",
