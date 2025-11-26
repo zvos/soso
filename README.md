@@ -47,6 +47,7 @@ https://img.shields.io/badge/status-active-success https://img.shields.io/badge/
        "accountId": "your-account-id2",
        "total": 100000
      }
+   多帐号以此类推……
    ]
    ```
 3. 部署 Worker
@@ -62,7 +63,7 @@ https://img.shields.io/badge/status-active-success https://img.shields.io/badge/
 环境变量
 
 变量名 类型 必需 说明
-EDGE JSON Array ✅ 账户配置数组
+EDGE 密钥 Array ✅ 账户配置数组
 
 账户配置字段
 
