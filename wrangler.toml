@@ -1,5 +1,6 @@
-name = "soso"
+name = "cf-workers-monitor"
 main = "worker.js"
 compatibility_date = "2024-01-01"
+
 [vars]
-EDGE = '[{"email":"your@email.com","key":"xxx","accountId":"xxx","total":100000}]'
+EDGE = ""
