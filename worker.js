@@ -19,7 +19,12 @@ const HTML_PAGE = `
             --text-secondary: #666;
             --card-bg: rgba(255, 255, 255, 0.9);
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --border: 1px solid rgba(255, 255, 255, 0.2);
+            --border: 1px solid rgba(0, 0, 0, 0.1);
+            --btn-text: #333;
+            --btn-bg: rgba(255, 255, 255, 0.8);
+            --btn-hover-bg: rgba(255, 255, 255, 0.9);
+            --header-text: #333;
+            --last-update-text: #666;
         }
         .dark-theme {
             --bg-primary: rgba(0, 0, 0, 0.2);
@@ -29,6 +34,11 @@ const HTML_PAGE = `
             --card-bg: rgba(30, 30, 30, 0.9);
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             --border: 1px solid rgba(255, 255, 255, 0.1);
+            --btn-text: #fff;
+            --btn-bg: rgba(255, 255, 255, 0.1);
+            --btn-hover-bg: rgba(255, 255, 255, 0.2);
+            --header-text: #fff;
+            --last-update-text: #ccc;
         }
         * {
             margin: 0;
@@ -37,10 +47,11 @@ const HTML_PAGE = `
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #9FE2BF;
+            background: #f9fcff;
             min-height: 100vh;
             padding: 20px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-primary);
         }
         body.dark-theme {
             background: #000000;
@@ -63,8 +74,8 @@ const HTML_PAGE = `
         .header {
             text-align: center;
             margin-bottom: 30px;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--header-text);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .header h1 {
             font-size: 2.5rem;
@@ -90,18 +101,21 @@ const HTML_PAGE = `
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: transparent;
-            backdrop-filter: none;
-            color: white;
-            border: none;
+            background: var(--btn-bg);
+            backdrop-filter: blur(10px);
+            color: var(--btn-text);
+            border: var(--border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         .btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: none;
+            background: var(--btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         .btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
+            transform: none;
         }
         .dropdown {
             position: relative;
@@ -120,6 +134,7 @@ const HTML_PAGE = `
             border-radius: 8px;
             overflow: hidden;
             margin-top: 5px;
+            border: var(--border);
         }
         .dropdown-content.show {
             display: block;
@@ -129,7 +144,7 @@ const HTML_PAGE = `
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border);
             transition: background 0.3s ease;
         }
         .dropdown-content a:hover {
@@ -160,7 +175,7 @@ const HTML_PAGE = `
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid var(--border);
         }
         .account-name {
             font-size: 1.4rem;
@@ -226,7 +241,7 @@ const HTML_PAGE = `
         }
         .progress-bar {
             height: 12px;
-            background: rgba(0, 0, 0, 0.1);
+            background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
         }
@@ -279,7 +294,7 @@ const HTML_PAGE = `
         }
         .last-update {
             text-align: center;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--last-update-text);
             margin-top: 20px;
             font-size: 0.9rem;
         }
@@ -287,11 +302,12 @@ const HTML_PAGE = `
             position: relative;
             width: 60px;
             height: 30px;
-            background: var(--bg-primary);
+            background: var(--btn-bg);
             border-radius: 15px;
             border: var(--border);
             cursor: pointer;
             transition: background 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         .theme-toggle::before {
             content: '';
@@ -300,7 +316,7 @@ const HTML_PAGE = `
             left: 3px;
             width: 24px;
             height: 24px;
-            background: white;
+            background: var(--btn-text);
             border-radius: 50%;
             transition: transform 0.3s ease;
         }
@@ -312,27 +328,27 @@ const HTML_PAGE = `
             height: 16px;
             margin-right: 8px;
             vertical-align: middle;
-            filter: invert(0.8);
+            filter: brightness(0.8);
             object-fit: contain;
         }
         .dark-theme .custom-icon {
-            filter: invert(0.2);
+            filter: brightness(1.2);
         }
         .account-icon {
             width: 16px;
             height: 16px;
             margin-right: 8px;
             vertical-align: middle;
-            filter: invert(0.8);
+            filter: brightness(0.8);
             object-fit: contain;
         }
         .dark-theme .account-icon {
-            filter: invert(0.2);
+            filter: brightness(1.2);
         }
         .refresh-progress {
             margin: 10px 0;
             text-align: center;
-            color: white;
+            color: var(--text-primary);
         }
         .progress-text {
             margin-bottom: 5px;
@@ -341,7 +357,7 @@ const HTML_PAGE = `
         .progress-bar-container {
             width: 100%;
             height: 6px;
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--bg-primary);
             border-radius: 3px;
             overflow: hidden;
         }
